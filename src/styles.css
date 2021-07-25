@@ -6,3 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .spacer{
     flex: 1 1 auto;
 }
+
+.example-header-image {
+    background-image: url('assets/no-image.png');
+    background-size: cover;
+  }
