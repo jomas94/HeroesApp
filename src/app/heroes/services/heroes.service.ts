@@ -16,17 +16,21 @@ export class HeroesService {
 
   getHeroes(): Observable<Heroe[]>{
 
-    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes/`)
+    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes/`);
   }
 
   getHeroePorId(id:string): Observable<Heroe>{
 
-    return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`)
+    return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`);
   
   }
 
   getSugerencias( termino:string ):Observable<Heroe[]> {
-    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes/?q=${termino}&limit=6`)
+    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes/?q=${termino}&limit=6`);
+  }
+
+  agregarHeroe( heroe:Heroe ):Observable<Heroe>{
+    return this.http.post<Heroe>(`${this.baseUrl}/heroes/`, heroe)
   }
 
 
