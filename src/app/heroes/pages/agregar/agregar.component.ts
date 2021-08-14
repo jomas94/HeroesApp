@@ -7,7 +7,12 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styles: [
+  styles: [`
+  img{
+    width: 100%;
+    border-radius: 4px;
+  }
+  `
   ]
 })
 export class AgregarComponent implements OnInit {
@@ -37,9 +42,17 @@ export class AgregarComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.activateRoute.params
-    .pipe(switchMap( ({id}) => this.heroesService.getHeroePorId(id) ))
-    .subscribe(heroe =>   this.heroe = heroe );
+    
+    if(this.router.url.includes('editar')){
+      
+      this.activateRoute.params
+      .pipe(switchMap( ({id}) => this.heroesService.getHeroePorId(id) ))
+      .subscribe(heroe =>   this.heroe = heroe );
+    }else{
+      return;
+    }
+    
+
     
   }
 
@@ -56,7 +69,7 @@ export class AgregarComponent implements OnInit {
       
       this.heroesService.agregarHeroe(this.heroe)
       .subscribe(heroe => {
-        this.router.navigate(['/heroes', heroe.id]); 
+        this.router.navigate(['/heroes/editar', heroe.id]); 
       });
     }   
       
