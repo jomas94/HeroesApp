@@ -34,12 +34,13 @@ export class AgregarComponent implements OnInit {
     characters:'',
     first_appearance:'',
     publisher: Publisher.MarvelComics,
-    alt_img: ''
+    alt_img: '',
+    
   }
 
   constructor(private heroesService: HeroesService,
-              private activateRoute: ActivatedRoute,
-              private router: Router) { }
+    private activateRoute: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     
@@ -51,8 +52,6 @@ export class AgregarComponent implements OnInit {
     }else{
       return;
     }
-    
-
     
   }
 
@@ -73,6 +72,11 @@ export class AgregarComponent implements OnInit {
       });
     }   
       
+  }
+
+  borrarHeroe(){
+    this.heroesService.borrarHeroe(this.heroe.id!)
+    .subscribe( () => this.router.navigate(['/heroes/listado']))
   }
 
 
