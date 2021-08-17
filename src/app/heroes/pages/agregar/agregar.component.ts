@@ -4,6 +4,9 @@ import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Component({
   selector: 'app-agregar',
@@ -42,7 +45,8 @@ export class AgregarComponent implements OnInit {
   constructor(  private heroesService: HeroesService,
                 private activateRoute: ActivatedRoute,
                 private router: Router,
-                private snackBar:MatSnackBar
+                private snackBar:MatSnackBar,
+                public dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -79,8 +83,39 @@ export class AgregarComponent implements OnInit {
   }
 
   borrarHeroe(){
-    this.heroesService.borrarHeroe(this.heroe.id!)
-    .subscribe( () => this.router.navigate(['/heroes/listado']));
+    const dialog = this.dialog.open(ConfirmarComponent, {
+      width:'350px',
+      data: {...this.heroe}
+    })
+
+
+
+    // dialog.afterClosed()
+    // .pipe(switchMap( (result) => result ? this.heroesService.borrarHeroe(this.heroe.id!) : new BehaviorSubject(false))
+    // )
+    // .subscribe((resultado) => {
+    //   if(resultado){
+    //     this.router.navigate(['/heroes/listado'])
+    //   }else{
+    //     return
+    //   }
+    // })
+
+
+
+    dialog.afterClosed()
+    .subscribe(
+      (result) => {
+        console.log(result);
+        
+        if (result) {
+          this.heroesService.borrarHeroe(this.heroe.id!)
+          .subscribe( () => this.router.navigate(['/heroes/listado']));
+        }
+      }
+    )
+
+
   }
 
 
