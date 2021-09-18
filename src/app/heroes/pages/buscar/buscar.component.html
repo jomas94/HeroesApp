@@ -4,13 +4,13 @@
         <h1>Buscador de Héroes</h1>
     <mat-divider></mat-divider>
     </div>
-    <div >
+    <div fxLayout="column">
         <h3>Buscador</h3>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>type here</mat-label>
             <input type="text"
-                   placeholder="Pick one"
-                   aria-label=" Pick one"
+                   placeholder="Elige uno"
+                   aria-label=" Elige uno"
                    matInput
                     [(ngModel)]="termino"
                    [matAutocomplete]="auto"

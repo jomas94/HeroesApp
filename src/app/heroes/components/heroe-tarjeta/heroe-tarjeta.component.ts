@@ -10,6 +10,11 @@ import { HeroesService } from '../../services/heroes.service';
   mat-card{
     margin-top:20px;
   }
+  .avatar{
+    width: 40px;
+    height: 40px;
+    /* background-size: cover; */
+  }
 
 `]
 })

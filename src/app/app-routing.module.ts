@@ -16,12 +16,12 @@ const routes: Routes =[
   },
   {
     path: '404',
-    component: ErrorPageComponent   
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path:'**',
     // component: ErrorPageComponent, 
-    redirectTo: '404'
+    redirectTo: 'auth'
   },
 ]
 

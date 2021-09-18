@@ -39,6 +39,7 @@ export class AgregarComponent implements OnInit {
     first_appearance:'',
     publisher: Publisher.MarvelComics,
     alt_img: '',
+    img_avatar: ''
     
   }
 

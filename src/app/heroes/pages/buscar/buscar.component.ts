@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Router } from '@angular/router';
 import { Heroe } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -13,9 +14,11 @@ export class BuscarComponent implements OnInit {
 
   termino: string = '';
   heroes: Heroe[] = [];
-  heroeSelecionado!:Heroe ;
+  // heroeSelecionado!:Heroe ;
   nohayHeroe:boolean = false;
-  constructor( private heroesService: HeroesService ) { }
+  
+  constructor(private router:Router, 
+    private heroesService: HeroesService ) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +41,11 @@ export class BuscarComponent implements OnInit {
     this.termino = heroe.superhero;
 
     this.heroesService.getHeroePorId(heroe.id!)
-    .subscribe(heroe => this.heroeSelecionado = heroe );
+    .subscribe( heroe => {
+      // this.heroeSelecionado = heroe;
+      this.router.navigate([`./heroes/${heroe.id}`]);
+    
+    } );
     
     
   }

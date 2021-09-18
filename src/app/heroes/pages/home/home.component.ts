@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
     //Ir al backend
     //un usuario
-    // localStorage.clear();
+    localStorage.clear();
     this.router.navigate(['./auth']);
    }
 }

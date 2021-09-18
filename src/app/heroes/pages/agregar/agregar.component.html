@@ -59,10 +59,18 @@
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label>Foto Url</mat-label>
+            <mat-label>Foto Principal</mat-label>
             <input matInput
                     type="url"
                     [(ngModel)]="heroe.alt_img"
+                     required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Foto Avatar</mat-label>
+            <input matInput
+                    type="url"
+                    [(ngModel)]="heroe.img_avatar"
                      required>
         </mat-form-field>
         
@@ -71,7 +79,8 @@
         <div fxLayout>
             <button mat-raised-button 
                 color="primary"
-                (click)="guardar()">
+                (click)="guardar()"
+                [disabled]="">
                 <mat-icon>edit</mat-icon>
                 Guardar
             </button>
